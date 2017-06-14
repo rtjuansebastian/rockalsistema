@@ -26,7 +26,7 @@ public class BandaController {
 	private BandaService bandaService;
 	
 	@GetMapping("banda/{id}")
-	ResponseEntity<Banda> find(@PathVariable("id") Integer id){
+	public ResponseEntity<Banda> find(@PathVariable("id") Integer id){
 		
 		Banda banda=bandaService.find(id);
 		return new ResponseEntity<Banda>(banda,HttpStatus.OK);
@@ -34,7 +34,7 @@ public class BandaController {
 	}
 	
 	@PostMapping("banda")
-	ResponseEntity<Void> create(@RequestBody Banda banda, UriComponentsBuilder builder){
+	public ResponseEntity<Void> create(@RequestBody Banda banda, UriComponentsBuilder builder){
 		boolean flag= bandaService.create(banda);
 		if(flag==false){
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
@@ -45,19 +45,19 @@ public class BandaController {
 	}
 	
 	@GetMapping("bandas")
-	ResponseEntity<List<Banda>> read(){
+	public ResponseEntity<List<Banda>> read(){
 		List<Banda> list= bandaService.read();
 		return new ResponseEntity<List<Banda>>(list,HttpStatus.OK);
 	}
 	
 	@PutMapping("banda")
-	ResponseEntity<Banda> update(@RequestBody Banda banda){
+	public ResponseEntity<Banda> update(@RequestBody Banda banda){
 		bandaService.update(banda);
 		return new ResponseEntity<Banda>(banda,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("banda/{id}")
-	ResponseEntity<Void> delete(@PathVariable("id") Integer id){
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id){
 		bandaService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}

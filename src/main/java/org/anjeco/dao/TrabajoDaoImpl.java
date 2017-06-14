@@ -60,7 +60,7 @@ public class TrabajoDaoImpl implements TrabajoDao {
 	public boolean exist(String nombre) {
 		
 		String hql="FROM Trabajo WHERE nombre= ? ";
-		int count=entityManager.createQuery(hql).getResultList().size();
+		int count=entityManager.createQuery(hql).setParameter(1,nombre).getResultList().size();
 		return count > 0 ? true: false;
 	}
 

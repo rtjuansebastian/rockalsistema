@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "trabajos")
 public class Trabajo implements Serializable {
@@ -31,6 +33,7 @@ public class Trabajo implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "banda")
+	@JsonBackReference
 	private Banda banda;
 
 	public Banda getBanda() {

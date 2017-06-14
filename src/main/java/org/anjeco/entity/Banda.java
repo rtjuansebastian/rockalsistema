@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "bandas")
 public class Banda implements Serializable {
@@ -39,9 +41,11 @@ public class Banda implements Serializable {
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "bandas_integrantes", joinColumns = { @JoinColumn(name = "banda") }, inverseJoinColumns = {
 			@JoinColumn(name = "integrante") })
+	@JsonManagedReference
 	private Set<Integrante> integrantes = new HashSet();
 
 	@OneToMany(mappedBy = "banda", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<Trabajo> trabajos = new HashSet();
 
 	public Banda() {

@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "ediciones")
 public class Edicion implements Serializable {
@@ -36,6 +38,7 @@ public class Edicion implements Serializable {
 	private String objetivo;
 
 	@OneToMany(mappedBy = "edicion", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<Presentacion> presentaciones = new HashSet();
 
 	public Edicion() {

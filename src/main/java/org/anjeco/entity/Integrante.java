@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "integrantes")
 public class Integrante implements Serializable {
@@ -35,6 +37,7 @@ public class Integrante implements Serializable {
 	private Date fechaNacimiento;
 
 	@ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "integrantes")
+	@JsonBackReference
 	private Set<Banda> bandas = new HashSet();
 
 	public Integrante() {

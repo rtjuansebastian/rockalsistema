@@ -26,7 +26,7 @@ public class TrabajoController {
 	private TrabajoService trabajoService;
 
 	@GetMapping("trabajo/{id}")
-	ResponseEntity<Trabajo> find(@PathVariable("id") Integer id) {
+	public ResponseEntity<Trabajo> find(@PathVariable("id") Integer id) {
 
 		Trabajo trabajo = trabajoService.find(id);
 		return new ResponseEntity<Trabajo>(trabajo, HttpStatus.OK);
@@ -34,7 +34,7 @@ public class TrabajoController {
 	}
 
 	@PostMapping("trabajo")
-	ResponseEntity<Void> create(@RequestBody Trabajo trabajo, UriComponentsBuilder builder) {
+	public ResponseEntity<Void> create(@RequestBody Trabajo trabajo, UriComponentsBuilder builder) {
 
 		boolean flag = trabajoService.create(trabajo);
 		if (flag == false) {
@@ -47,20 +47,20 @@ public class TrabajoController {
 	}
 
 	@GetMapping("trabajos")
-	ResponseEntity<List<Trabajo>> read() {
+	public ResponseEntity<List<Trabajo>> read() {
 		List<Trabajo> list = trabajoService.read();
 		return new ResponseEntity<List<Trabajo>>(list, HttpStatus.OK);
 	}
 
 	@PutMapping("trabajo")
-	ResponseEntity<Trabajo> update(@RequestBody Trabajo trabajo) {
+	public ResponseEntity<Trabajo> update(@RequestBody Trabajo trabajo) {
 
 		trabajoService.update(trabajo);
 		return new ResponseEntity<Trabajo>(trabajo, HttpStatus.OK);
 	}
 
 	@DeleteMapping("trabajo")
-	ResponseEntity<Void> delete(@PathVariable Integer id) {
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 
 		trabajoService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
