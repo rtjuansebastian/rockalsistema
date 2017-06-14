@@ -50,6 +50,7 @@ public class GeneroDaoImpl implements GeneroDao {
 
 	@Override
 	public void delete(int id) {
+		
 		entityManager.remove(find(id));
 
 	}

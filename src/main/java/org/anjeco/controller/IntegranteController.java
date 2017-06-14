@@ -54,7 +54,7 @@ public class IntegranteController {
 		return new ResponseEntity<Integrante>(integrante,HttpStatus.OK);
 	}
 	
-	@DeleteMapping()
+	@DeleteMapping("integrante/{id}")
 	public ResponseEntity<Void>delete(@PathVariable("id") Integer id){
 		integranteService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
