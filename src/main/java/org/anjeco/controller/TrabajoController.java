@@ -59,8 +59,8 @@ public class TrabajoController {
 		return new ResponseEntity<Trabajo>(trabajo, HttpStatus.OK);
 	}
 
-	@DeleteMapping("trabajo")
-	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+	@DeleteMapping("trabajo/{id}")
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
 
 		trabajoService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

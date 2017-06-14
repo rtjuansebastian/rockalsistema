@@ -24,8 +24,8 @@ public class Presentacion implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private int id;
-	
+	private int id;	
+
 	@Column(name="hora")
 	@Temporal(TemporalType.TIME) 
 	private Date hora;
@@ -62,5 +62,13 @@ public class Presentacion implements Serializable {
 	public void setBanda(Banda banda) {
 		this.banda = banda;
 	}
+	
+	public Edicion getEdicion() {
+		return edicion;
+	}
+
+	public void setEdicion(Edicion edicion) {
+		this.edicion = edicion;
+	}	
 
 }
