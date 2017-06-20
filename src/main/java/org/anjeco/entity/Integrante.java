@@ -44,7 +44,7 @@ public class Integrante implements Serializable {
 	
 	@ManyToMany(mappedBy = "integrantes")
 	@JsonIgnore
-	private Set<Banda> bandas;
+	private Set<Banda> bandas= new HashSet();
 
 	public Integrante() {
 

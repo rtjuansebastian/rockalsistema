@@ -42,11 +42,11 @@ public class Banda implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "bandas_integrantes", joinColumns = { @JoinColumn(name = "banda", referencedColumnName="id") }, inverseJoinColumns = {
 			@JoinColumn(name = "integrante", referencedColumnName="id") })	
-	private Set<Integrante> integrantes;
+	private Set<Integrante> integrantes= new HashSet();
 
 	@OneToMany(mappedBy = "banda", cascade = CascadeType.ALL)
 	@JsonManagedReference(value="banda-trabajo")
-	private Set<Trabajo> trabajos;
+	private Set<Trabajo> trabajos= new HashSet();
 
 	public Banda() {
 
