@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "trabajos")
@@ -33,7 +34,7 @@ public class Trabajo implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "banda")
-	@JsonBackReference
+	@JsonBackReference(value="trabajo")
 	private Banda banda;
 
 	public Banda getBanda() {

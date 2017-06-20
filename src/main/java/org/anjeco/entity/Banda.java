@@ -36,12 +36,10 @@ public class Banda implements Serializable {
 
 	@Column(name = "resena")
 	private String resena;
-
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "bandas_integrantes", joinColumns = { @JoinColumn(name = "banda") }, inverseJoinColumns = {
-			@JoinColumn(name = "integrante") })
+	
+	@OneToMany(mappedBy = "banda")
 	@JsonManagedReference
-	private Set<Integrante> integrantes = new HashSet();
+	private Set<BandaIntegrante> bandaIntegrante;
 
 	@OneToMany(mappedBy = "banda", cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -49,17 +47,6 @@ public class Banda implements Serializable {
 
 	public Banda() {
 
-	}
-
-	public Banda(int id, String nombre, Genero genero, String resena, Set<Integrante> integrantes,
-			Set<Trabajo> trabajos) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.genero = genero;
-		this.resena = resena;
-		this.integrantes = integrantes;
-		this.trabajos = trabajos;
 	}
 
 	public int getId() {
@@ -94,14 +81,6 @@ public class Banda implements Serializable {
 		this.resena = resena;
 	}
 
-	public Set<Integrante> getIntegrantes() {
-		return integrantes;
-	}
-
-	public void setIntegrantes(Set<Integrante> integrantes) {
-		this.integrantes = integrantes;
-	}
-
 	public Set<Trabajo> getTrabajos() {
 		return trabajos;
 	}
@@ -109,4 +88,13 @@ public class Banda implements Serializable {
 	public void setTrabajos(Set<Trabajo> trabajos) {
 		this.trabajos = trabajos;
 	}
+
+	public Set<BandaIntegrante> getBandaIntegrante() {
+		return bandaIntegrante;
+	}
+
+	public void setBandaIntegrante(Set<BandaIntegrante> bandaIntegrante) {
+		this.bandaIntegrante = bandaIntegrante;
+	}
+		
 }

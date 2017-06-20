@@ -44,7 +44,7 @@ public class BandaDaoImpl implements BandaDao {
 		Banda ban = find(banda.getId());
 		ban.setNombre(banda.getNombre());
 		ban.setResena(banda.getResena());
-		ban.setIntegrantes(banda.getIntegrantes());
+		ban.setBandaIntegrante(banda.getBandaIntegrante());
 		ban.setTrabajos(banda.getTrabajos());
 		entityManager.flush();
 

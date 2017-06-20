@@ -10,12 +10,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "integrantes")
@@ -35,30 +39,13 @@ public class Integrante implements Serializable {
 	@Column(name = "fecha_nacimiento")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
-
-	@ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "integrantes")
-	@JsonBackReference
-	private Set<Banda> bandas = new HashSet();
+	
+	@OneToMany(mappedBy = "integrante" , cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<BandaIntegrante> bandaIntegrante;
 
 	public Integrante() {
 
-	}
-
-	public Integrante(int id, String nombre, char sexo, Date fechaNacimiento, Set<Banda> bandas) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.sexo = sexo;
-		this.fechaNacimiento = fechaNacimiento;
-		this.bandas = bandas;
-	}
-
-	public Set<Banda> getBandas() {
-		return bandas;
-	}
-
-	public void setBandas(Set<Banda> bandas) {
-		this.bandas = bandas;
 	}
 
 	public int getId() {
@@ -92,5 +79,13 @@ public class Integrante implements Serializable {
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	public Set<BandaIntegrante> getBandaIntegrante() {
+		return bandaIntegrante;
+	}
+
+	public void setBandaIntegrante(Set<BandaIntegrante> bandaIntegrante) {
+		this.bandaIntegrante = bandaIntegrante;
+	}	
 
 }
