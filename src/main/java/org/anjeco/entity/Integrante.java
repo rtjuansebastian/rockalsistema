@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,6 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -40,9 +42,9 @@ public class Integrante implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
 	
-	@OneToMany(mappedBy = "integrante" , cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private Set<BandaIntegrante> bandaIntegrante;
+	@ManyToMany(mappedBy = "integrantes")
+	@JsonIgnore
+	private Set<Banda> bandas;
 
 	public Integrante() {
 
@@ -80,12 +82,12 @@ public class Integrante implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Set<BandaIntegrante> getBandaIntegrante() {
-		return bandaIntegrante;
+	public Set<Banda> getBandas() {
+		return bandas;
 	}
 
-	public void setBandaIntegrante(Set<BandaIntegrante> bandaIntegrante) {
-		this.bandaIntegrante = bandaIntegrante;
-	}	
+	public void setBandas(Set<Banda> bandas) {
+		this.bandas = bandas;
+	}
 
 }

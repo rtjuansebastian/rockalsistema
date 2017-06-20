@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -37,13 +39,14 @@ public class Banda implements Serializable {
 	@Column(name = "resena")
 	private String resena;
 	
-	@OneToMany(mappedBy = "banda")
-	@JsonManagedReference
-	private Set<BandaIntegrante> bandaIntegrante;
+	@ManyToMany
+	@JoinTable(name = "bandas_integrantes", joinColumns = { @JoinColumn(name = "banda", referencedColumnName="id") }, inverseJoinColumns = {
+			@JoinColumn(name = "integrante", referencedColumnName="id") })	
+	private Set<Integrante> integrantes;
 
 	@OneToMany(mappedBy = "banda", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private Set<Trabajo> trabajos = new HashSet();
+	@JsonManagedReference(value="banda-trabajo")
+	private Set<Trabajo> trabajos;
 
 	public Banda() {
 
@@ -89,12 +92,12 @@ public class Banda implements Serializable {
 		this.trabajos = trabajos;
 	}
 
-	public Set<BandaIntegrante> getBandaIntegrante() {
-		return bandaIntegrante;
+	public Set<Integrante> getIntegrantes() {
+		return integrantes;
 	}
 
-	public void setBandaIntegrante(Set<BandaIntegrante> bandaIntegrante) {
-		this.bandaIntegrante = bandaIntegrante;
+	public void setIntegrantes(Set<Integrante> integrantes) {
+		this.integrantes = integrantes;
 	}
 		
 }

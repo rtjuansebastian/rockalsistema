@@ -34,7 +34,7 @@ public class Trabajo implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "banda")
-	@JsonBackReference(value="trabajo")
+	@JsonBackReference(value="banda-trabajo")
 	private Banda banda;
 
 	public Banda getBanda() {
